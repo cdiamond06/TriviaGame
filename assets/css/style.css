@@ -1,0 +1,26 @@
+body,html{
+	height:100%;
+	background-color: red;
+	position:relative;
+}
+
+.container{
+	padding-top: 2%;
+	height:95%;
+}
+.jumbotron{
+	padding-top: 5%;
+	padding-bottom: 5%;
+	margin: 0 auto;
+}
+
+
+
+#start-button{
+	
+	width:24%;
+	height:8%;
+	margin-left: 40%;
+	margin-top: 23%;
+	/*margin-bottom: 8%;*/
+}
