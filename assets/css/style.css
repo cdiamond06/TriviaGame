@@ -3,6 +3,9 @@ body,html{
 	background-color: red;
 	position:relative;
 }
+form{
+	margin-bottom: 3%;
+}
 
 .container{
 	padding-top: 2%;
@@ -14,7 +17,10 @@ body,html{
 	margin: 0 auto;
 }
 
-
+.question{
+	line-height: 90%;
+	margin-bottom: 2%;
+}
 
 #start-button{
 	

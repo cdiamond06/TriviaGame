@@ -1,12 +1,10 @@
 // Global varialbes
-
+// -------------------------------------------------------------------
 // Scores
 var correct = 0;
 var incorrect = 0;
 var incomplete = 0;
 
-
-var toggle = false;
 var counter = 0;
 var intervalId;
 
@@ -72,7 +70,7 @@ var questions = [
 		d: "Michael",
 		correctAnswer: "Dwight"
 	},	
-	 questionEight ={
+		{
 		question: "During the Booze Cruise, who breaks up?",
 		a: "Pam and Roy",
 		b: "Jim and Katy",
@@ -126,14 +124,19 @@ var questiontimer= {
 
 };
 
-// Main Process
-// -----------------------------------------------------------------------
-// starting page
+ function starting(){
 $('#timer').hide();
 $('#question-holder').hide();
 $('#results-holder').hide();
+}
 
+// Main Process
+// -----------------------------------------------------------------------
+// starting page
+$(document).ready(function(){
+starting();
 
+// Starts the trivia when start button is selected
 $('#start-button').on("click", function(){
 	$('#start-button').hide();
 	$('#question-holder').show();
@@ -141,24 +144,42 @@ $('#start-button').on("click", function(){
 	questiontimer.start();
 
 	var questionHolder = $("#question-holder");
+
 		for(var i = 0; i < questions.length; i++){
-			questionHolder.append("<p class ='question' >" + questions[i].question + "</p>" + " <form> <input type='radio' name = " + i + ">" + questions[i].a + "<input type= 'radio' name = " + i + ">" + questions[i].b + "<input type= 'radio' name = " + i + ">" + questions[i].c + "<input type= 'radio' name = " + i + ">" + questions[i].d + "</form>");
+			questionHolder.append("<p class ='question' >" + questions[i].question + "</p>" + " <form id = 'myForm'> <input type='radio' name = " + i + " value = " + questions[i].a + ">" + questions[i].a + "<input type= 'radio' name = " + i + " value = " + questions[i].b + ">" + questions[i].b + "<input type= 'radio' name = " + i + " value = " + questions[i].c + ">" + questions[i].c + "<input type= 'radio' name = " + i + " value = " + questions[i].d + ">" + questions[i].d + "</form>");
 		}
 	questionHolder.append('<button type="button" class="btn btn-primary btn-lg" id = "submit-button">Submit </button>')
 
-	$("#submit-button").click(function(){
-	alert("test");
-		$('#timer').hide();
-		$('#question-holder').hide();
-		$('#results-holder').show();
-	$('input[type=radio]:checked');
+	// Whent the submit buton has been selected 
+		$("#submit-button").click(function(){
+		
+			$('#timer').hide();
+			$('#question-holder').hide();
+			$('#results-holder').show();
+			for(var i = 0; i < questions.length; i++){
+					console.log(questions[i].correctAnswer);
+					var checkedValue = $('input[type=radio]:checked');
+					if($('input[type=radio]:checked') && $('input[type=radio]:checked', '#myForm').val() === questions[i].correctAnswer){
+						correct++;
+					} 
+					else if($('input[type=radio]:checked') && $('input[type=radio]:checked', '#myForm').val() !== questions[i].correctAnswer){
 
-	var resultsHolder = $("#results-holder");
-		resultsHolder.append("<p class = 'result' > All Done! </p>" + "<p class = 'result' > Correct: " + correct + "</p>" + "<p class = 'result' >Incorrect: " + incorrect + "</p>" + "<p class = 'result' > Incomplete: " + incomplete + "</p>");
+						incorrect++;
+
+					} else{
+						incomeplete++;
+					}
+
+			};
+		
+
+		var resultsHolder = $("#results-holder");
+			resultsHolder.append("<p class = 'result' > All Done! </p>" + "<p class = 'result' > Correct: " + correct + "</p>" + "<p class = 'result' >Incorrect: " + incorrect + "</p>" + "<p class = 'result' > Incomplete: " + incomplete + "</p>");
 
 // this is grabbing all choices that were checked and compare to the answer after they click submit
-	});
-})
+		});
+	})
+});
 
 
 
